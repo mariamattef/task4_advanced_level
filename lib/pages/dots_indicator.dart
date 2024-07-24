@@ -18,6 +18,11 @@ class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
     'https://picsum.photos/id/237/1100/800',
     'https://picsum.photos/seed/picsum/1100/800',
     'https://picsum.photos/1000/800?grayscale'
+        'https://picsum.photos/1200/800',
+    'https://picsum.photos/1200/800/?blur',
+    'https://picsum.photos/id/237/1100/800',
+    'https://picsum.photos/seed/picsum/1100/800',
+    'https://picsum.photos/1000/800?grayscale'
   ];
   @override
   Widget build(BuildContext context) {
