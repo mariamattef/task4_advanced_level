@@ -28,7 +28,7 @@ class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Carousel Dots Indicator'),
+        title: const Text('Carousel Dots Indicator'),
       ),
       body: Center(
         child: Column(
@@ -41,6 +41,9 @@ class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
                 return BuildImage(urlImage, itemIndex);
               },
               itemCount: 5,
+            ),
+            SizedBox(
+              height: 20,
             ),
             DotsIndicator(
               dotsCount: urlImages.length,
@@ -60,32 +63,31 @@ class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
     return DotsDecorator(
       color: Colors.black26,
       activeColor: Colors.deepPurple,
-      size: const Size.square(7.0),
-      activeSize: const Size(13.0, 9.0),
+      size: const Size.square(4.0),
+      activeSize: const Size(5.0, 5.0),
       activeShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(3.0),
       ),
       shape: const Border(),
       activeShapes: List.filled(
-          5,
+          urlImages.length,
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3.0),
           )),
-      sizes: List.filled(5, const Size.square(13.0)),
-      activeSizes: List.filled(5, const Size(13.0, 15.0)),
-      spacing: const EdgeInsets.all(10.0),
+      sizes: List.filled(urlImages.length, const Size.square(13.0)),
+      activeSizes: List.filled(urlImages.length, const Size(13.0, 13.0)),
+      spacing: const EdgeInsets.all(6.0),
     );
   }
 
   CarouselOptions crousalOptions() {
     return CarouselOptions(
       autoPlay: true,
-      autoPlayInterval: Duration(seconds: 3),
+      autoPlayInterval: const Duration(seconds: 3),
       autoPlayCurve: Curves.fastOutSlowIn,
       enlargeCenterPage: true,
-      enlargeFactor: 0.3,
+      enlargeFactor: 0.2,
       scrollDirection: Axis.horizontal,
-      // height: 150.0,
       onPageChanged: ((index, reason) {
         setState(() {
           currentIndexPage = index;
@@ -97,35 +99,32 @@ class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
 
 Widget BuildImage(String urlImage, int itemIndex) {
   return Container(
-      height: 300,
-      width: 500,
+      // height: 900,
+      // width: 1000,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(8),
+        // color: Colors.grey[300],
       ),
-      margin: EdgeInsets.symmetric(horizontal: 5.0),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Stack(
-          children: [
-            Center(
-              child: Image.network(
-                urlImage,
-                fit: BoxFit.cover,
-              ),
+      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: Stack(
+        children: [
+          Center(
+            child: Image.network(
+              urlImage,
+              fit: BoxFit.cover,
             ),
-            Positioned(
-              bottom: 10,
-              left: 20,
-              child: Text(
-                'No ${(itemIndex + 1).toString()} image',
-                style: TextStyle(
-                    fontSize: 13.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
+          ),
+          Positioned(
+            bottom: 20,
+            left: 20,
+            child: Text(
+              'No ${(itemIndex + 1).toString()} image',
+              style: const TextStyle(
+                  fontSize: 13.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
-          ],
-        ),
+          ),
+        ],
       ));
 }
