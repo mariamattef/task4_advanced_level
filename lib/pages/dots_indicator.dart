@@ -11,6 +11,7 @@ class CarouselDotsIndicator extends StatefulWidget {
 }
 
 class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
+  CarouselController buttonCarouselController = CarouselController();
   var currentIndexPage = 0;
   final urlImages = [
     'https://picsum.photos/1200/800',
@@ -34,6 +35,7 @@ class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
         child: Column(
           children: [
             CarouselSlider.builder(
+              carouselController: buttonCarouselController,
               options: crousalOptions(),
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) {
@@ -49,7 +51,11 @@ class _CarouselDotsIndicatorState extends State<CarouselDotsIndicator> {
               dotsCount: urlImages.length,
               position: currentIndexPage,
               onTap: (index) {
-                index = currentIndexPage;
+                buttonCarouselController.animateToPage(index);
+                setState(() {
+                  currentIndexPage = index;
+                });
+                // index = currentIndexPage;
               },
               decorator: dotsIndicatorDicoration(),
             ),
